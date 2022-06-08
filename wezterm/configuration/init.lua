@@ -1,8 +1,8 @@
 local config = {}
 
-require('configuration.signals')
+require("configuration.signals")
 
-config.keys = require('configuration.keys')
-config.tabs = require('configuration.tabs')
+config.keys = require("configuration.keys")
+config.tabs = require("configuration.tabs")
 
 return config
