@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local mytable = require("lib/mystdlib").mytable
+local tables = require("lib.stdlib")
 local configuration = require("configuration")
 
 local font_with_fallback = function(name, params)
@@ -14,7 +14,7 @@ local cfg_misc = {
 	-- No updates, bleeding edge only
 	check_for_updates = true,
 
-	window_decorations = "NONE",
+	window_decorations = "RESIZE",
 
 	-- Font Stuff
 	font = font_with_fallback("JetBrainsMono Nerd Font"),
@@ -56,8 +56,8 @@ local cfg_misc = {
 
 	-- Padding
 	-- Top is offsetted for titlebar
-	initial_rows = 50,
-	initial_cols = 150,
+	initial_rows = 60,
+	initial_cols = 160,
 
 	-- default apps to tmux
 	default_prog = { "/bin/zsh", "-l", "-c", "tmux" },
@@ -75,5 +75,4 @@ local cfg_tab_bar = configuration.tabs
 local cfg_keys = configuration.keys
 
 -- Merge everything and return
-local config = mytable.merge_all(cfg_misc, cfg_tab_bar, cfg_keys)
-return config
+return tables.merge_all(cfg_misc, cfg_tab_bar, cfg_keys)
