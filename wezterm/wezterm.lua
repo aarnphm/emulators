@@ -1,6 +1,13 @@
 local wezterm = require("wezterm")
-local tables = require("lib.stdlib")
+local tables = require("extensions.stdlib")
 local configuration = require("configuration")
+local catppuccin = require("colors.catppuccin").setup({
+  sync_flavour = {
+    light = "latte",
+    dark = "frappe",
+  },
+  flavour = "frappe",
+})
 
 local font_with_fallback = function(name, params)
   local names = { name, "FiraCode Nerd Font Mono", "Blobmoji" }
@@ -66,7 +73,8 @@ local cfg_misc = {
   -- No opacity
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
 
-  color_scheme = "rose-pine",
+  color_scheme = "rose-pine-dawn",
+  -- colors = catppuccin,
 }
 
 -- Tab Style (like shape)
