@@ -41,7 +41,7 @@ local cfg_misc = {
     },
     { intensity = "Half", font = font_with_fallback("JetBrainsMono Nerd Font") },
   },
-  font_size = 15.0,
+  font_size = 15,
   font_shaper = "Harfbuzz",
   line_height = 1.0,
   audible_bell = "Disabled",
@@ -73,8 +73,8 @@ local cfg_misc = {
   -- No opacity
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
 
-  color_scheme = "rose-pine-dawn",
-  -- colors = catppuccin,
+  -- color_scheme = "rose-pine",
+  colors = catppuccin,
 }
 
 -- Tab Style (like shape)
