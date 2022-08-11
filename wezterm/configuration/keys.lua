@@ -1,93 +1,67 @@
-local wezterm = require("wezterm")
-local act = wezterm.action
+local action = require("wezterm").action
 local config = {}
 
+config.leader = { key = "`" }
 config.keys = {
   {
-    mods = "CTRL",
+    mods = "LEADER",
     key = [[-]],
-    action = act({
-      SplitVertical = { domain = "CurrentPaneDomain" },
-    }),
+    action = action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
   },
   {
-    mods = "CTRL",
-    key = [[\]],
-    action = act({ SplitHorizontal = { domain = "CurrentPaneDomain", args = { "zsh", "-l" } } }),
-  }, -- browser-like bindings for tabbing
-  {
-    key = "t",
-    mods = "CTRL",
-    action = act({ SpawnTab = "CurrentPaneDomain" }),
+    mods = "LEADER",
+    key = [[|]],
+    action = action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
   },
-  {
-    key = "q",
-    mods = "CTRL",
-    action = act({ CloseCurrentTab = { confirm = true } }),
-  },
-  {
-    mods = "CTRL",
-    key = "Tab",
-    action = act({ ActivateTabRelative = 1 }),
-  },
-  {
-    mods = "CTRL|SHIFT",
-    key = "Tab",
-    action = act({ ActivateTabRelative = -1 }),
-  }, -- standard copy/paste bindings
-  {
-    mods = "ALT|SHIFT",
-    key = "H",
-    action = act({ ActivatePaneDirection = "Left" }),
-  },
-  {
-    mods = "ALT|SHIFT",
-    key = "L",
-    action = act({ ActivatePaneDirection = "Right" }),
-  },
-  {
-    mods = "ALT|SHIFT",
-    key = "J",
-    action = act({ ActivatePaneDirection = "Down" }),
-  },
-  {
-    mods = "ALT|SHIFT",
-    key = "K",
-    action = act({ ActivatePaneDirection = "Up" }),
-  },
-  { key = "LeftArrow", mods = "ALT|SHIFT", action = act({ AdjustPaneSize = { "Left", 10 } }) },
-  { key = "RightArrow", mods = "ALT|SHIFT", action = act({ AdjustPaneSize = { "Right", 10 } }) },
-  { key = "UpArrow", mods = "ALT|SHIFT", action = act({ AdjustPaneSize = { "Up", 10 } }) },
-  { key = "DownArrow", mods = "ALT|SHIFT", action = act({ AdjustPaneSize = { "Down", 10 } }) },
-  {
-    mods = "SHIFT|ALT",
-    key = "F12",
-    action = act.ShowDebugOverlay,
-  },
+
+  { key = "c", mods = "LEADER", action = action({ SpawnTab = "CurrentPaneDomain" }) },
+  { key = "x", mods = "LEADER", action = action({ CloseCurrentTab = { confirm = false } }) },
+  { mods = "LEADER", key = "n", action = action({ ActivateTabRelative = 1 }) },
+  { mods = "LEADER", key = "p", action = action({ ActivateTabRelative = -1 }) },
+  { mods = "LEADER", key = "l", action = action({ MoveTabRelative = -1 }) },
+  { mods = "SUPER", key = "Enter", action = action.ToggleFullScreen },
+
+  -- standard copy/paste bindings
+  { mods = "SUPER", key = "h", action = action({ ActivatePaneDirection = "Left" }) },
+  { mods = "SUPER", key = "l", action = action({ ActivatePaneDirection = "Right" }) },
+  { mods = "SUPER", key = "j", action = action({ ActivatePaneDirection = "Down" }) },
+  { mods = "SUPER", key = "k", action = action({ ActivatePaneDirection = "Up" }) },
+  { key = "h", mods = "ALT", action = action({ AdjustPaneSize = { "Left", 10 } }) },
+  { key = "l", mods = "ALT", action = action({ AdjustPaneSize = { "Right", 10 } }) },
+  { key = "k", mods = "ALT", action = action({ AdjustPaneSize = { "Up", 10 } }) },
+  { key = "j", mods = "ALT", action = action({ AdjustPaneSize = { "Down", 10 } }) },
+  { mods = "SHIFT|ALT", key = "F12", action = action.ShowDebugOverlay },
+
   -- default keybind
-  { key = "c", mods = "SUPER", action = act({ CopyTo = "Clipboard" }) },
-  { key = "c", mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
-  { key = "v", mods = "SUPER", action = act({ PasteFrom = "Clipboard" }) },
-  { key = "v", mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
-  { key = "Insert", mods = "SHIFT", action = act({ PasteFrom = "PrimarySelection" }) },
-  { key = "=", mods = "CTRL", action = "ResetFontSize" },
-  { key = "+", mods = "CTRL", action = "IncreaseFontSize" },
-  { key = "-", mods = "CTRL", action = "DecreaseFontSize" },
-  { key = "x", mods = "CTRL|SHIFT", action = act.ActivateCopyMode },
-  { key = "PageUp", mods = "ALT", action = act({ ScrollByPage = -1 }) },
-  { key = "PageDown", mods = "ALT", action = act({ ScrollByPage = 1 }) },
-  { key = "z", mods = "ALT", action = "ReloadConfiguration" },
-  { key = "1", mods = "ALT", action = act({ ActivateTab = 0 }) },
-  { key = "2", mods = "ALT", action = act({ ActivateTab = 1 }) },
-  { key = "3", mods = "ALT", action = act({ ActivateTab = 2 }) },
-  { key = "4", mods = "ALT", action = act({ ActivateTab = 3 }) },
-  { key = "5", mods = "ALT", action = act({ ActivateTab = 4 }) },
-  { key = "6", mods = "ALT", action = act({ ActivateTab = 5 }) },
-  { key = "7", mods = "ALT", action = act({ ActivateTab = 6 }) },
-  { key = "8", mods = "ALT", action = act({ ActivateTab = 7 }) },
-  { key = "9", mods = "ALT", action = act({ ActivateTab = 8 }) },
-  { key = "q", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
-  { key = "x", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
+  { key = "c", mods = "SUPER", action = action({ CopyTo = "Clipboard" }) },
+  { key = "c", mods = "CTRL|SHIFT", action = action({ CopyTo = "Clipboard" }) },
+  { key = "v", mods = "SUPER", action = action({ PasteFrom = "Clipboard" }) },
+  { key = "v", mods = "CTRL|SHIFT", action = action({ PasteFrom = "Clipboard" }) },
+  { key = "=", mods = "LEADER", action = "ResetFontSize" },
+  { key = "=", mods = "SUPER", action = "IncreaseFontSize" },
+  { key = "-", mods = "SUPER", action = "DecreaseFontSize" },
+  { key = "x", mods = "CTRL|SHIFT", action = action.ActivateCopyMode },
+  { key = "PageUp", mods = "ALT", action = action({ ScrollByPage = -1 }) },
+  { key = "PageDown", mods = "ALT", action = action({ ScrollByPage = 1 }) },
+  { key = "1", mods = "LEADER", action = action({ ActivateTab = 0 }) },
+  { key = "2", mods = "LEADER", action = action({ ActivateTab = 1 }) },
+  { key = "3", mods = "LEADER", action = action({ ActivateTab = 2 }) },
+  { key = "4", mods = "LEADER", action = action({ ActivateTab = 3 }) },
+  { key = "5", mods = "LEADER", action = action({ ActivateTab = 4 }) },
+  { key = "6", mods = "LEADER", action = action({ ActivateTab = 5 }) },
+  { key = "7", mods = "LEADER", action = action({ ActivateTab = 6 }) },
+  { key = "8", mods = "LEADER", action = action({ ActivateTab = 7 }) },
+  { key = "9", mods = "LEADER", action = action({ ActivateTab = 8 }) },
+  { key = "1", mods = "SUPER", action = action({ ActivateTab = 0 }) },
+  { key = "2", mods = "SUPER", action = action({ ActivateTab = 1 }) },
+  { key = "3", mods = "SUPER", action = action({ ActivateTab = 2 }) },
+  { key = "4", mods = "SUPER", action = action({ ActivateTab = 3 }) },
+  { key = "5", mods = "SUPER", action = action({ ActivateTab = 4 }) },
+  { key = "6", mods = "SUPER", action = action({ ActivateTab = 5 }) },
+  { key = "7", mods = "SUPER", action = action({ ActivateTab = 6 }) },
+  { key = "8", mods = "SUPER", action = action({ ActivateTab = 7 }) },
+  { key = "9", mods = "SUPER", action = action({ ActivateTab = 8 }) },
+  { key = "q", mods = "SUPER", action = action({ CloseCurrentPane = { confirm = false } }) },
 }
 
 config.disable_default_key_bindings = true
