@@ -1,6 +1,6 @@
-local config = {}
+local M = {}
 
-config.keys = require("configuration.keys")
-config.tabs = require("configuration.tabs")
+M.keybinding = require("configuration.keys")
+M.tabs = require("configuration.tabs")
 
-return config
+return M

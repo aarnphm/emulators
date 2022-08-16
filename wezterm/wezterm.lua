@@ -1,6 +1,3 @@
-local wezterm = require("wezterm")
-local tables = require("extensions.stdlib")
-local configuration = require("configuration")
 local catppuccin = require("colors.catppuccin").setup({
   sync_flavour = {
     light = "latte",
@@ -9,16 +6,16 @@ local catppuccin = require("colors.catppuccin").setup({
   flavour = "frappe",
 })
 
+local rosepine = require("colors.rose-pine-dawn").colors()
+
 local font_with_fallback = function(name, params)
   local names = { name, "FiraCode Nerd Font Mono", "Blobmoji" }
-  return wezterm.font_with_fallback(names, params)
+  return require("wezterm").font_with_fallback(names, params)
 end
 
-local cfg_misc = {
+local config = {
   -- OpenGL for GPU acceleration, Software for CPU
   front_end = "OpenGL",
-
-  default_prog = { "zsh", "-l" },
 
   -- No updates, bleeding edge only
   check_for_updates = true,
@@ -69,12 +66,13 @@ local cfg_misc = {
 
   -- default apps to tmux
   -- default_prog = { "/bin/zsh", "-l", "-c", "tmux" },
+  default_prog = { "zsh", "-l" },
 
   -- No opacity
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
 
-  -- color_scheme = "rose-pine",
-  colors = catppuccin,
+  colors = rosepine,
+
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
     -- Compiled-in default. Used if you don't specify any hyperlink_rules.
@@ -123,11 +121,11 @@ local cfg_misc = {
   },
 }
 
--- Tab Style (like shape)
-local cfg_tab_bar = configuration.tabs
-
 -- Keys
-local cfg_keys = configuration.keys
+local keys = require("configuration").keybinding
+
+-- Tab Style (like shape)
+local tabs = require("configuration").tabs
 
 -- Merge everything and return
-return tables.merge_all(cfg_misc, cfg_tab_bar, cfg_keys)
+return require("extensions.stdlib").merge_all(config, tabs, keys)
