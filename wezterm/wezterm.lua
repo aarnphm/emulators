@@ -1,13 +1,3 @@
-local catppuccin = require("colors.catppuccin").setup({
-  sync_flavour = {
-    light = "latte",
-    dark = "frappe",
-  },
-  flavour = "frappe",
-})
-
-local rosepine = require("colors.rose-pine-dawn").colors()
-
 local font_with_fallback = function(name, params)
   local names = { name, "FiraCode Nerd Font Mono", "Blobmoji" }
   return require("wezterm").font_with_fallback(names, params)
@@ -39,16 +29,18 @@ local config = {
     { intensity = "Half", font = font_with_fallback("JetBrainsMono Nerd Font") },
   },
   font_size = 14,
+  dpi = 144.0, -- macos dpi
   font_shaper = "Harfbuzz",
   line_height = 1.0,
   audible_bell = "Disabled",
-  freetype_load_target = "HorizontalLcd",
+  freetype_load_target = "Mono",
   freetype_render_target = "HorizontalLcd",
 
   -- Cursor style
   default_cursor_style = "SteadyBlock",
 
   -- X Bad
+
   enable_wayland = false,
 
   native_macos_fullscreen_mode = true,
@@ -65,13 +57,12 @@ local config = {
   initial_cols = 160,
 
   -- default apps to tmux
-  -- default_prog = { "/bin/zsh", "-l", "-c", "tmux" },
   default_prog = { "zsh", "-l" },
 
   -- No opacity
-  inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
+  inactive_pane_hsb = { saturation = 0.2, brightness = 0.5 },
 
-  colors = rosepine,
+  color_scheme = "kanagawabones",
 
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
