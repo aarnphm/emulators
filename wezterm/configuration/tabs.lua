@@ -2,7 +2,7 @@ local M = {}
 
 local wezterm = require("wezterm")
 local utils = require("utils")
-local scheme = wezterm.get_builtin_color_schemes()["nord"]
+local scheme = wezterm.get_builtin_color_schemes()["Rosé Pine Dawn (base16)"]
 
 local function create_tab_title(tab, tabs, panes, config, hover, max_width)
   local user_title = tab.active_pane.user_vars.panetitle
@@ -34,10 +34,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
   local solid_left_arrow = utf8.char(0x2590)
   local solid_right_arrow = utf8.char(0x258c)
-  -- https://github.com/wez/wezterm/issues/807
-  -- local edge_background = scheme.background
-  -- https://github.com/wez/wezterm/blob/61f01f6ed75a04d40af9ea49aa0afe91f08cb6bd/config/src/color.rs#L245
-  local edge_background = "#363636"
+  local edge_background = scheme.background
   local background = scheme.ansi[1]
   local foreground = scheme.ansi[5]
 
@@ -63,52 +60,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     { Text = solid_right_arrow },
     { Attribute = { Intensity = "Normal" } },
   }
-end)
-
--- https://github.com/wez/wezterm/issues/1680
-local function update_window_background(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  -- If there's no foreground process, assume that we are "wezterm connect" or "wezterm ssh"
-  -- and use a different background color
-  -- if pane:get_foreground_process_name() == nil then
-  -- 	-- overrides.colors = { background = "blue" }
-  -- 	overrides.color_scheme = "Red Alert"
-  -- end
-
-  if overrides.color_scheme == nil then
-    return
-  end
-  if pane:get_user_vars().production == "1" then
-    overrides.color_scheme = "OneHalfDark"
-  end
-  window:set_config_overrides(overrides)
-end
-
-local function update_ssh_status(window, pane)
-  local text = pane:get_domain_name()
-  if text == "local" then
-    text = ""
-  end
-  return {
-    { Attribute = { Italic = true } },
-    { Text = text .. " " },
-  }
-end
-
-local function display_copy_mode(window, pane)
-  local name = window:active_key_table()
-  if name then
-    name = "Mode: " .. name
-  end
-  return { { Attribute = { Italic = false } }, { Text = name or "" } }
-end
-
-wezterm.on("update-right-status", function(window, pane)
-  local ssh = update_ssh_status(window, pane)
-  local copy_mode = display_copy_mode(window, pane)
-  update_window_background(window, pane)
-  local status = utils.merge_lists(ssh, copy_mode)
-  window:set_right_status(wezterm.format(status))
 end)
 
 -- Tab Bar Options

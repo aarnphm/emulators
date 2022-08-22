@@ -3,6 +3,8 @@ local font_with_fallback = function(name, params)
   return require("wezterm").font_with_fallback(names, params)
 end
 
+local scheme = require("wezterm").get_builtin_color_schemes()["Rosé Pine Dawn (base16)"]
+
 local config = {
   -- OpenGL for GPU acceleration, Software for CPU
   front_end = "OpenGL",
@@ -30,7 +32,7 @@ local config = {
   },
   font_size = 14,
   dpi = 144.0, -- macos dpi
-  font_shaper = "Harfbuzz",
+  -- font_shaper = "Harfbuzz",
   line_height = 1.0,
   audible_bell = "Disabled",
   freetype_load_target = "Mono",
@@ -62,7 +64,15 @@ local config = {
   -- No opacity
   inactive_pane_hsb = { saturation = 0.2, brightness = 0.5 },
 
-  color_scheme = "kanagawabones",
+  color_scheme = "Rosé Pine Dawn (base16)",
+  colors = {
+    tab_bar = {
+      background = scheme.background,
+      new_tab = { bg_color = scheme.background, fg_color = scheme.ansi[8], intensity = "Bold" },
+      new_tab_hover = { bg_color = scheme.ansi[1], fg_color = scheme.brights[8], intensity = "Bold" },
+    },
+  },
+  tab_bar_at_bottom = false,
 
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
