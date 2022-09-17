@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 local utils = require("utils")
 local scheme = wezterm.get_builtin_color_schemes()["Rosé Pine Dawn (base16)"]
 
-local function create_tab_title(tab, tabs, panes, config, hover, max_width)
+local create_tab_title = function(tab, tabs, panes, config, hover, max_width)
   local user_title = tab.active_pane.user_vars.panetitle
   if user_title ~= nil and #user_title > 0 then
     return tab.tab_index + 1 .. ":" .. user_title

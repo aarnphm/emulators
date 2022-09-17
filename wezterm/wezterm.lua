@@ -32,7 +32,7 @@ local config = {
   },
   font_size = 14,
   dpi = 144.0, -- macos dpi
-  -- font_shaper = "Harfbuzz",
+  font_shaper = "Harfbuzz",
   line_height = 1.0,
   audible_bell = "Disabled",
   freetype_load_target = "Mono",
@@ -62,7 +62,6 @@ local config = {
   default_prog = { "zsh", "-l" },
 
   -- No opacity
-  inactive_pane_hsb = { saturation = 0.2, brightness = 0.5 },
 
   color_scheme = "Rosé Pine Dawn (base16)",
   colors = {
@@ -72,7 +71,6 @@ local config = {
       new_tab_hover = { bg_color = scheme.ansi[1], fg_color = scheme.brights[8], intensity = "Bold" },
     },
   },
-  tab_bar_at_bottom = false,
 
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
@@ -122,11 +120,9 @@ local config = {
   },
 }
 
--- Keys
-local keys = require("configuration").keybinding
-
--- Tab Style (like shape)
-local tabs = require("configuration").tabs
-
 -- Merge everything and return
-return require("extensions.stdlib").merge_all(config, tabs, keys)
+return require("extensions.stdlib").merge_all(
+  config,
+  require("configuration").tabs,
+  require("configuration").keybinding
+)
