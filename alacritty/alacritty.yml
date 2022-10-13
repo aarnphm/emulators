@@ -109,9 +109,10 @@ font:
 draw_bold_text_with_bright_colors: false
 
 import:
-  # - /Users/aarnphm/.config/alacritty/catppuccin.yml
-  # - /Users/aarnphm/.config/alacritty/rose-pine.yml
-  - /Users/aarnphm/.config/alacritty/rose-pine-dawn.yml
+  - /Users/aarnphm/.config/alacritty/catppuccin.yml
+  # - /Users/aarnphm/.config/alacritty/rose-pine-moon.yml
+  # - /Users/aarnphm/.config/alacritty/rose-pine-dawn.yml
+  # - /Users/aarnphm/.config/alacritty/kanagawa.yml
 
 env:
   TERM: xterm-256color
