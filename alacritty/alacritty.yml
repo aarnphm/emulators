@@ -36,7 +36,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -75,19 +75,19 @@ font:
     style: "Medium Italic"
 
   # Point size of the font
-  size: 17
+  size: 14
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0
-    y: 0
+    y: 2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0
+    x: 1
     y: 0
   # Thin stroke font rendering (macOS only)
   #
@@ -103,7 +103,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
@@ -196,10 +196,7 @@ live_config_reload: true
 
 shell:
   program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux"
+  args: ["-l"]
 
 hints:
   # Keys used for the hint labels.
