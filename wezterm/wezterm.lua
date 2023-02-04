@@ -63,7 +63,7 @@ local config = {
 
   -- No opacity
 
-  color_scheme = "Rosé Pine Dawn (base16)",
+  color_scheme = "Catppuccin Latte",
   colors = {
     tab_bar = {
       background = scheme.background,
