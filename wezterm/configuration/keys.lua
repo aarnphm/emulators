@@ -2,7 +2,7 @@ local action = require("wezterm").action
 local M = {}
 
 M.disable_default_key_bindings = true
-M.leader = { key = "`" }
+M.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 M.keys = {
   {
     mods = "LEADER",
@@ -11,7 +11,7 @@ M.keys = {
   },
   {
     mods = "LEADER",
-    key = [[|]],
+    key = [[\]],
     action = action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
   },
 
@@ -23,14 +23,14 @@ M.keys = {
   { mods = "SUPER", key = "Enter", action = action.ToggleFullScreen },
 
   -- standard copy/paste bindings
-  { mods = "SUPER", key = "h", action = action({ ActivatePaneDirection = "Left" }) },
-  { mods = "SUPER", key = "l", action = action({ ActivatePaneDirection = "Right" }) },
-  { mods = "SUPER", key = "j", action = action({ ActivatePaneDirection = "Down" }) },
-  { mods = "SUPER", key = "k", action = action({ ActivatePaneDirection = "Up" }) },
-  { key = "h", mods = "ALT", action = action({ AdjustPaneSize = { "Left", 10 } }) },
-  { key = "l", mods = "ALT", action = action({ AdjustPaneSize = { "Right", 10 } }) },
-  { key = "k", mods = "ALT", action = action({ AdjustPaneSize = { "Up", 10 } }) },
-  { key = "j", mods = "ALT", action = action({ AdjustPaneSize = { "Down", 10 } }) },
+  { mods = "ALT", key = "h", action = action({ ActivatePaneDirection = "Left" }) },
+  { mods = "ALT", key = "l", action = action({ ActivatePaneDirection = "Right" }) },
+  { mods = "ALT", key = "j", action = action({ ActivatePaneDirection = "Down" }) },
+  { mods = "ALT", key = "k", action = action({ ActivatePaneDirection = "Up" }) },
+  { key = "h", mods = "SUPER", action = action({ AdjustPaneSize = { "Left", 10 } }) },
+  { key = "l", mods = "SUPER", action = action({ AdjustPaneSize = { "Right", 10 } }) },
+  { key = "k", mods = "SUPER", action = action({ AdjustPaneSize = { "Up", 10 } }) },
+  { key = "j", mods = "SUPER", action = action({ AdjustPaneSize = { "Down", 10 } }) },
   { mods = "SHIFT|ALT", key = "F12", action = action.ShowDebugOverlay },
 
   -- default keybind
@@ -44,25 +44,15 @@ M.keys = {
   { key = "x", mods = "CTRL|SHIFT", action = action.ActivateCopyMode },
   { key = "e", mods = "CTRL|SHIFT", action = action({ ScrollByPage = -1 }) },
   { key = "y", mods = "CTRL|SHIFT", action = action({ ScrollByPage = 1 }) },
-  { key = "1", mods = "LEADER", action = action({ ActivateTab = 0 }) },
   { key = "1", mods = "SUPER", action = action({ ActivateTab = 0 }) },
-  { key = "2", mods = "LEADER", action = action({ ActivateTab = 1 }) },
   { key = "2", mods = "SUPER", action = action({ ActivateTab = 1 }) },
-  { key = "3", mods = "LEADER", action = action({ ActivateTab = 2 }) },
   { key = "3", mods = "SUPER", action = action({ ActivateTab = 2 }) },
-  { key = "4", mods = "LEADER", action = action({ ActivateTab = 3 }) },
   { key = "4", mods = "SUPER", action = action({ ActivateTab = 3 }) },
-  { key = "5", mods = "LEADER", action = action({ ActivateTab = 4 }) },
   { key = "5", mods = "SUPER", action = action({ ActivateTab = 4 }) },
-  { key = "6", mods = "LEADER", action = action({ ActivateTab = 5 }) },
   { key = "6", mods = "SUPER", action = action({ ActivateTab = 5 }) },
-  { key = "7", mods = "LEADER", action = action({ ActivateTab = 6 }) },
   { key = "7", mods = "SUPER", action = action({ ActivateTab = 6 }) },
-  { key = "8", mods = "LEADER", action = action({ ActivateTab = 7 }) },
   { key = "8", mods = "SUPER", action = action({ ActivateTab = 7 }) },
-  { key = "9", mods = "LEADER", action = action({ ActivateTab = 8 }) },
   { key = "9", mods = "SUPER", action = action({ ActivateTab = 8 }) },
-  { key = "q", mods = "LEADER", action = action({ CloseCurrentPane = { confirm = false } }) },
   { key = "q", mods = "SUPER", action = action({ CloseCurrentPane = { confirm = false } }) },
 }
 
