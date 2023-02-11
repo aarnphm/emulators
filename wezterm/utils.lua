@@ -1,8 +1,18 @@
 local M = {}
 
-function M.basename(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
+M._COLORSCHEME = "Catppuccin Mocha"
 
-function M.merge_tables(t1, t2)
+M.get_scheme = function(name)
+	if name == nil then
+		name = M._COLORSCHEME
+	end
+	local scheme = require("wezterm").get_builtin_color_schemes()[name]
+	return scheme
+end
+
+M.basename = function(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
+
+M.merge_tables = function(t1, t2)
 	for k, v in pairs(t2) do
 		if (type(v) == "table") and (type(t1[k] or false) == "table") then
 			M.merge_tables(t1[k], t2[k])
@@ -13,7 +23,7 @@ function M.merge_tables(t1, t2)
 	return t1
 end
 
-function M.merge_lists(t1, t2)
+M.merge_lists = function(t1, t2)
 	local result = {}
 	for _, v in pairs(t1) do
 		table.insert(result, v)
@@ -24,7 +34,7 @@ function M.merge_lists(t1, t2)
 	return result
 end
 
-function M.exists(tab, element)
+M.exists = function(tab, element)
 	for _, v in pairs(tab) do
 		if v == element then
 			return true
@@ -35,7 +45,7 @@ function M.exists(tab, element)
 	return false
 end
 
-function M.convert_home_dir(path)
+M.convert_home_dir = function(path)
 	local cwd = path
 	local home = os.getenv "HOME"
 	cwd = cwd:gsub("^" .. home .. "/", "~/")
@@ -45,17 +55,17 @@ function M.convert_home_dir(path)
 	return cwd
 end
 
-function M.file_exists(fname)
+M.file_exists = function(fname)
 	local stat = vim.loop.fs_stat(vim.fn.expand(fname))
 	return (stat and stat.type) or false
 end
 
-function M.convert_useful_path(dir)
+M.convert_useful_path = function(dir)
 	local cwd = M.convert_home_dir(dir)
 	return M.basename(cwd)
 end
 
-function M.split_from_url(dir)
+M.split_from_url = function(dir)
 	local cwd = ""
 	local hostname = ""
 	local cwd_uri = dir:sub(8)

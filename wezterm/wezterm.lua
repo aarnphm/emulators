@@ -3,11 +3,15 @@ local font_with_fallback = function(name, params)
 	return require("wezterm").font_with_fallback(names, params)
 end
 
-local scheme = require("wezterm").get_builtin_color_schemes()["Catppuccin Latte"]
+local scheme = require("utils").get_scheme()
+local gpu = require("wezterm").gui.enumerate_gpus()[1]
 
 local config = {
 	-- OpenGL for GPU acceleration, Software for CPU
-	front_end = "OpenGL",
+	-- front_end = "OpenGL",
+	front_end = "WebGpu",
+	webgpu_power_preference = "HighPerformance",
+	webgpu_preferred_adapter = gpu,
 
 	-- No updates, bleeding edge only
 	check_for_updates = false,
@@ -30,19 +34,29 @@ local config = {
 		},
 		{ intensity = "Half", font = font_with_fallback "JetBrainsMono Nerd Font" },
 	},
-	font_size = 12,
+	font_size = 15,
 	dpi = 144.0, -- macos dpi
 	font_shaper = "Harfbuzz",
-	line_height = 1.0,
+	harfbuzz_features = {
+		"cv06=1",
+		"cv14=1",
+		"cv32=1",
+		"ss04=1",
+		"ss07=1",
+		"ss09=1",
+	},
+
+	line_height = 1,
 	audible_bell = "Disabled",
 	freetype_load_target = "Mono",
-	freetype_render_target = "HorizontalLcd",
+	freetype_render_target = "Normal",
+	animation_fps = 120,
+	max_fps = 120,
 
 	-- Cursor style
 	default_cursor_style = "SteadyBlock",
 
 	-- X Bad
-
 	enable_wayland = false,
 
 	native_macos_fullscreen_mode = true,
@@ -64,7 +78,7 @@ local config = {
 
 	-- No opacity
 
-	color_scheme = "Catppuccin Latte",
+	color_scheme = "rose-pine-dawn",
 	colors = {
 		tab_bar = {
 			background = scheme.background,

@@ -1,0 +1,39 @@
+theme = "rose_pine_dawn"
+
+[editor]
+color-modes = true
+line-number = "relative"
+cursorline = true
+cursorcolumn = true
+auto-pairs = true
+bufferline = "multiple"
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "position"]
+
+[editor.lsp]
+display-messages = true
+
+[editor.whitespace.render]
+space = "all"
+tab = "none"
+newline = "none"
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+[keys.normal]
+V = ["extend_line_below", "select_mode"]     # same as "x -> v"
+g.o = "jump_backward"                        # same as "<c-o>"
+g.O = "jump_forward"                         # same as "<c-i>"
+g.a = "code_action"
+space.f = "file_picker_in_current_directory"
+space.F = "file_picker"
+";" = "command_mode"
+
+[keys.insert]
+j.j = "normal_mode"

@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-BASEDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}")" &>/dev/null && pwd 2>/dev/null)"
+BASEDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}")" &> /dev/null && pwd 2> /dev/null)"
 
 if [ ! -d ~/.config/alacritty ]; then
-	ln -s "$BASEDIR/alacritty" ~/.config/alacritty
+    ln -s "$BASEDIR/alacritty" ~/.config/alacritty
 fi
 if [ ! -d ~/.config/kitty ]; then
-	ln -s "$BASEDIR/kitty" ~/.config/kitty
+    ln -s "$BASEDIR/kitty" ~/.config/kitty
 fi
 if [ ! -d ~/.config/wezterm ]; then
-	ln -s "$BASEDIR/wezterm" ~/.config/wezterm
+    ln -s "$BASEDIR/wezterm" ~/.config/wezterm
+fi
+if [ ! -d ~/.config/helix ]; then
+    ln -s "$BASEDIR/helix" ~/.config/helix
 fi

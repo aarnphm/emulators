@@ -2,7 +2,7 @@ local M = {}
 
 local wezterm = require "wezterm"
 local utils = require "utils"
-local scheme = wezterm.get_builtin_color_schemes()["Rosé Pine Dawn (base16)"]
+local scheme = require("utils").get_scheme()
 
 local create_tab_title = function(tab, tabs, panes, config, hover, max_width)
 	local user_title = tab.active_pane.user_vars.panetitle
