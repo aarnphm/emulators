@@ -94,7 +94,7 @@ font:
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 import:
-  - /Users/aarnphm/.config/alacritty/rose-pine-dawn.yml
+  - /Users/aarnphm/.config/alacritty/rose-pine.yml
 env:
   TERM: xterm-256color
 # Visual Bell

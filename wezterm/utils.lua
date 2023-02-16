@@ -1,6 +1,6 @@
 local M = {}
 
-M._COLORSCHEME = "Catppuccin Mocha"
+M._COLORSCHEME = "rose-pine"
 
 M.get_scheme = function(name)
 	if name == nil then
@@ -9,6 +9,8 @@ M.get_scheme = function(name)
 	local scheme = require("wezterm").get_builtin_color_schemes()[name]
 	return scheme
 end
+
+M.get_colorscheme_name = function() return M._COLORSCHEME end
 
 M.basename = function(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
 

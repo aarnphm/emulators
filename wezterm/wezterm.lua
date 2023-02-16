@@ -78,7 +78,7 @@ local config = {
 
 	-- No opacity
 
-	color_scheme = "rose-pine-dawn",
+	color_scheme = require("utils").get_colorscheme_name(),
 	colors = {
 		tab_bar = {
 			background = scheme.background,
