@@ -59,12 +59,13 @@ font:
   # The bold font face
   bold:
     family: "JetBrainsMono Nerd Font"
+    style: Light
   # The italic font face
   italic:
     family: "JetBrainsMono Nerd Font"
-    style: "Medium Italic"
+    style: Italic
   # Point size of the font
-  size: 14
+  size: 13
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
@@ -74,8 +75,8 @@ font:
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 1
-    y: 0
+    x: -2
+    y: -1
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina you
@@ -94,7 +95,7 @@ font:
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 import:
-  - /Users/aarnphm/.config/alacritty/rose-pine.yml
+  - /Users/aarnphm/.config/alacritty/rose-pine-dawn.yml
 env:
   TERM: xterm-256color
 # Visual Bell
@@ -418,25 +419,3 @@ key_bindings:
   - {key: Down, mode: Search, action: SearchHistoryNext}
   - {key: Return, mode: Search|~Vi, action: SearchFocusNext}
   - {key: Return, mods: Shift, mode: Search|~Vi, action: SearchFocusPrevious}
-  # (macOS only)
-  - {key: K, mods: Command, mode: ~Vi|~Search, chars: "\f"}
-  - {key: K, mods: Command, mode: ~Vi|~Search, action: ClearHistory}
-  - {key: Minus, mods: Command|Shift, action: ResetFontSize}
-  - {key: Equals, mods: Command, action: IncreaseFontSize}
-  - {key: Plus, mods: Command, action: IncreaseFontSize}
-  - {key: NumpadAdd, mods: Command, action: IncreaseFontSize}
-  - {key: Minus, mods: Command, action: DecreaseFontSize}
-  - {key: NumpadSubtract, mods: Command, action: DecreaseFontSize}
-  - {key: V, mods: Command, action: Paste}
-  - {key: C, mods: Command, action: Copy}
-  - {key: C, mods: Command, mode: Vi|~Search, action: ClearSelection}
-  - {key: H, mods: Command, action: Hide}
-  - {key: H, mods: Command|Alt, action: HideOtherApplications}
-  - {key: M, mods: Command, action: Minimize}
-  - {key: Q, mods: Command, action: Quit}
-  - {key: W, mods: Command, action: Quit}
-  - {key: N, mods: Command, action: SpawnNewInstance}
-  - {key: Return, mods: Command, action: ToggleFullscreen}
-  - {key: F, mods: Command|Control, action: ToggleFullscreen}
-  - {key: F, mods: Command, mode: ~Search, action: SearchForward}
-  - {key: B, mods: Command, mode: ~Search, action: SearchBackward}
