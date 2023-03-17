@@ -34,7 +34,7 @@ local config = {
 		},
 		{ intensity = "Half", font = font_with_fallback "JetBrainsMono Nerd Font" },
 	},
-	font_size = 15,
+	font_size = 13,
 	dpi = 144.0, -- macos dpi
 	font_shaper = "Harfbuzz",
 	harfbuzz_features = {

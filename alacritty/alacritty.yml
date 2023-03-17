@@ -11,8 +11,8 @@ window:
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
   position:
-    x: 0
-    y: 0
+    x: 600
+    y: 200
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -32,7 +32,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  decorations: none
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -42,7 +42,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Windowed
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
@@ -54,18 +54,18 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: "JetBrainsMono Nerd Font"
+    family: 'JetBrainsMono Nerd Font'
     style: Regular
   # The bold font face
   bold:
-    family: "JetBrainsMono Nerd Font"
+    family: 'JetBrainsMono Nerd Font'
     style: Light
   # The italic font face
   italic:
-    family: "JetBrainsMono Nerd Font"
+    family: 'JetBrainsMono Nerd Font'
     style: Italic
   # Point size of the font
-  size: 13
+  size: 14
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
@@ -95,7 +95,7 @@ font:
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 import:
-  - /Users/aarnphm/.config/alacritty/rose-pine-dawn.yml
+  - /Users/aarnphm/.config/alacritty/oxocarbon-dark.yml
 env:
   TERM: xterm-256color
 # Visual Bell
@@ -122,7 +122,7 @@ env:
 #
 bell:
   animation: EaseOutExpo
-  color: "0xffffff"
+  color: '#ffffff'
   duration: 0
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -170,10 +170,10 @@ cursor:
 live_config_reload: true
 shell:
   program: /bin/zsh
-  args: ["-l"]
+  args: ['-l']
 hints:
   # Keys used for the hint labels.
-  alphabet: "jfkdls;ahgurieowpq"
+  alphabet: 'jfkdls;ahgurieowpq'
   # List with all available hints
   #
   # Each hint must have a `regex` and either an `action` or a `command` field.
@@ -200,12 +200,12 @@ hints:
   #       Move the vi mode cursor to the beginning of the hint.
   enbled:
     - regex: '(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>"\\s{-}\\^⟨⟩`]+'
-      command: "open"
+      command: 'open'
       post_processing: true
       mouse: enabled:true mods:"None"
       binding:
-        key: "U"
-        mods: "Control|Shift"
+        key: 'U'
+        mods: 'Control|Shift'
 # Key bindings
 #
 # Key bindings are specified as a list of objects. Each binding will specify a
@@ -354,11 +354,22 @@ key_bindings:
   - {key: Paste, action: Paste}
   - {key: Copy, action: Copy}
   - {key: L, mods: Control, action: ClearLogNotice}
-  - {key: L, mods: Control, mode: ~Vi|~Search, chars: "\f"}
   - {key: PageUp, mods: Shift, mode: ~Alt, action: ScrollPageUp}
   - {key: PageDown, mods: Shift, mode: ~Alt, action: ScrollPageDown}
   - {key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop}
   - {key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom}
+  # Search Mode
+  - {key: Return, mode: Search|Vi, action: SearchConfirm}
+  - {key: Escape, mode: Search, action: SearchCancel}
+  - {key: C, mods: Control, mode: Search, action: SearchCancel}
+  - {key: U, mods: Control, mode: Search, action: SearchClear}
+  - {key: W, mods: Control, mode: Search, action: SearchDeleteWord}
+  - {key: P, mods: Control, mode: Search, action: SearchHistoryPrevious}
+  - {key: N, mods: Control, mode: Search, action: SearchHistoryNext}
+  - {key: Up, mode: Search, action: SearchHistoryPrevious}
+  - {key: Down, mode: Search, action: SearchHistoryNext}
+  - {key: Return, mode: Search|~Vi, action: SearchFocusNext}
+  - {key: Return, mods: Shift, mode: Search|~Vi, action: SearchFocusPrevious}
   # Vi Mode
   - {key: P, mods: Shift|Control, mode: ~Search, action: ToggleViMode}
   - {key: Space, mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom}
@@ -407,15 +418,4 @@ key_bindings:
   - {key: Slash, mods: Shift, mode: Vi|~Search, action: SearchBackward}
   - {key: N, mode: Vi|~Search, action: SearchNext}
   - {key: N, mods: Shift, mode: Vi|~Search, action: SearchPrevious}
-  # Search Mode
-  - {key: Return, mode: Search|Vi, action: SearchConfirm}
-  - {key: Escape, mode: Search, action: SearchCancel}
-  - {key: C, mods: Control, mode: Search, action: SearchCancel}
-  - {key: U, mods: Control, mode: Search, action: SearchClear}
-  - {key: W, mods: Control, mode: Search, action: SearchDeleteWord}
-  - {key: P, mods: Control, mode: Search, action: SearchHistoryPrevious}
-  - {key: N, mods: Control, mode: Search, action: SearchHistoryNext}
-  - {key: Up, mode: Search, action: SearchHistoryPrevious}
-  - {key: Down, mode: Search, action: SearchHistoryNext}
-  - {key: Return, mode: Search|~Vi, action: SearchFocusNext}
-  - {key: Return, mods: Shift, mode: Search|~Vi, action: SearchFocusPrevious}
+  - {key: L, mods: Control, mode: ~Vi|~Search, chars: "\f"}

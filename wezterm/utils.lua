@@ -1,6 +1,6 @@
 local M = {}
 
-M._COLORSCHEME = "rose-pine-dawn"
+M._COLORSCHEME = "rose-pine"
 
 M.get_scheme = function(name)
 	if name == nil then
