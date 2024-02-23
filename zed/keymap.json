@@ -1,0 +1,23 @@
+[
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j j": "vim::NormalBefore" // remap jj in insert mode to escape.
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      ";": "command_palette::Toggle",
+      "K": "editor::Hover",
+      "tab": "editor::ShowCompletions"
+    }
+  },
+  {
+    "context": "menu",
+    "bindings": {
+      "ctrl-j": "editor::MoveLineDown",
+      "ctrl-k": "editor::MoveLineUp"
+    }
+  }
+]
