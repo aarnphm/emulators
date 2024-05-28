@@ -1,10 +1,11 @@
 local font_with_fallback = function(name, params)
-	local names = { name, "FiraCode Nerd Font Mono", "Blobmoji" }
+	local names = { name, "JetBrainsMono Nerd Font", "FiraCode Nerd Font Mono", "Blobmoji" }
 	return require("wezterm").font_with_fallback(names, params)
 end
 
 local scheme = require("utils").get_scheme()
 local gpu = require("wezterm").gui.enumerate_gpus()[1]
+local font = "BerkeleyMono Nerd Font Mono"
 
 local config = {
 	-- OpenGL for GPU acceleration, Software for CPU
@@ -14,27 +15,27 @@ local config = {
 	webgpu_preferred_adapter = gpu,
 
 	-- No updates, bleeding edge only
-	check_for_updates = false,
+	check_for_updates = true,
 
 	window_decorations = "RESIZE",
 
 	-- Font Stuff
-	font = font_with_fallback "JetBrainsMono Nerd Font",
+	font = font_with_fallback(font),
 	font_rules = {
 		{
-			font = font_with_fallback "JetBrainsMono Nerd Font",
+			font = font_with_fallback(font),
 		},
 		{
 			intensity = "Bold",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { bold = true }),
+			font = font_with_fallback(font, { bold = true }),
 		},
 		{
 			intensity = "Bold",
-			font = font_with_fallback("JetBrainsMono Nerd Font", { bold = true }),
+			font = font_with_fallback(font, { bold = true }),
 		},
-		{ intensity = "Half", font = font_with_fallback "JetBrainsMono Nerd Font" },
+		{ intensity = "Half", font = font_with_fallback(font) },
 	},
-	font_size = 13,
+	font_size = 14,
 	dpi = 144.0, -- macos dpi
 	font_shaper = "Harfbuzz",
 	harfbuzz_features = {
@@ -70,8 +71,8 @@ local config = {
 
 	-- Padding
 	-- Top is offsetted for titlebar
-	initial_rows = 60,
-	initial_cols = 160,
+	initial_rows = 35,
+	initial_cols = 80,
 
 	-- default apps to tmux
 	default_prog = { "zsh", "-l" },
