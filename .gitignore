@@ -3,3 +3,4 @@ karabiner/automatic_backups
 *.tmp*
 /zed/embeddings
 *.log
+*.backup-from-hm
